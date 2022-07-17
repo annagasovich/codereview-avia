@@ -18,7 +18,11 @@
     "@vue/eslint-config-prettier": "^7.0.0",
     "eslint": "^8.5.0",
     "eslint-plugin-vue": "^9.0.0",
+    "node-sass": "^7.0.1",
     "prettier": "^2.5.1",
+    "sass": "^1.53.0",
+    "sass-loader": "^13.0.2",
+    "scss": "^0.2.4",
     "vite": "^2.9.14"
   }
 }
