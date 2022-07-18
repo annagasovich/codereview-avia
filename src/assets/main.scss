@@ -1,5 +1,6 @@
 @use "colors";
 @import "milligram/dist/milligram.css";
+@import '@vuepic/vue-datepicker/dist/main.css';
 
 body
 {
@@ -30,6 +31,7 @@ label{
   letter-spacing: 0.5px;
   color: colors.$color-basic;
   text-transform: uppercase;
+  font-size: 12px;
 }
 
 .filter{
@@ -51,7 +53,7 @@ label{
   }
   &__controls{
     padding: 10px 20px;
-    font-size: 22px;
+    font-size: 12px;
     font-weight: 400;
     &:hover{
       background: colors.$color-hover;
@@ -109,11 +111,17 @@ label{
   }
 }
 
+.top-filter{
+  input{
+    @include container();
+  }
+}
 
-
-input[type='radio'] {
-  height: 30px;
-  width: 30px;
-  vertical-align: middle;
-  accent-color: colors.$color-primary;
+.btn{
+  background: colors.$color-primary;
+  color: white;
+  cursor: pointer;
+  border-radius: 5px;
+  text-align: center;
+  padding: 20px;
 }

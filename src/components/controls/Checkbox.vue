@@ -39,7 +39,7 @@
         -moz-user-select: none;
         -ms-user-select: none;
         user-select: none;
-        font-size: 22px;
+        font-size: 13px;
         font-weight: 400;
         &:hover{
             .checkmark{

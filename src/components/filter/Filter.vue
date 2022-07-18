@@ -24,7 +24,7 @@
         <div class="filter-company">
             <div class="filter-company__name">Компания</div>
             <Radiogroup
-                    :data="radio"
+                    :data="companies"
                     :name="'company'"
             />
         </div>
@@ -32,23 +32,19 @@
 </template>
 
 <script setup>
+import {computed} from 'vue';
 import Checkbox from "@/components/controls/Checkbox.vue"
 import Radiogroup from "@/components/controls/Radiogroup.vue"
+import {useTicketsStore} from '@/stores/tickets';
 
-const radio = [
-    {
-        label: 'Все',
-        value: 1
-    },
-    {
-        label: 'S7 Airlines',
-        value: 2
-    },
-    {
-        label: 'XiamenAir',
-        value: 2
-    }
-];
+const store = useTicketsStore();
+const companies = computed(() =>
+    [{name: 'Все', id: 1}]
+        .concat(store.companies)
+        .map((el) => {return {label: el.name, value: el.id}})
+)
+store.getCompanies();
+
 </script>
 
 <style scoped>

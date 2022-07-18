@@ -28,7 +28,7 @@ label {
     display: flex;
     align-items: center;
     position: relative;
-    font-size: 22px;
+    font-size: 13px;
     font-weight: 400;
     cursor: pointer;
     input{
@@ -72,7 +72,7 @@ label {
     height: 15px;
     background: colors.$color-primary;
     position: absolute;
-    top: 10px;
+    top: 5px;
     left: 5px;
     border-radius: 100%;
     -webkit-transition: all 0.2s ease;

@@ -3,19 +3,14 @@
     <header>
       <img src="@/assets/img/logo.svg" alt="">
     </header>
-
+    <TopFilter/>
     <main>
       <div class="row">
         <div class="column column-33">
           <Filter/>
         </div>
         <div class="column column-67">
-          <Sort/>
-          <div class="list">
-            <Ticket :data="data"/>
-            <Ticket :data="data"/>
-            <Ticket :data="data"/>
-          </div>
+          <Main/>
         </div>
       </div>
     </main>
@@ -24,20 +19,9 @@
 </template>
 
 <script setup>
-import Ticket from "@/components/content/Ticket.vue"
 import Filter from "@/components/filter/Filter.vue"
-import Sort from "@/components/filter/Sort.vue"
-
-const data = {
-  "stops": ["EKT", "EKT"],
-  "origin": "HKG",
-  "dateEnd": 1664574603624,
-  "duration": 8880000,
-  "dateStart": 1663451403624,
-  "destination": "ARH",
-  "price": 57400,
-  "logo": "S7 Airlines.svg"
-}
+import TopFilter from "@/components/filter/TopFilter.vue"
+import Main from "@/components/content/Main.vue"
 </script>
 
 <style scoped>

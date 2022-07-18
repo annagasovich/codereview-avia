@@ -9,7 +9,7 @@
                 minimumFractionDigits: 0,
                 }) }}</div>
             <div class="item-main__logo">
-                <img :src="'/src/assets/img/company/'+data.logo" alt="">
+                <img :src="`./src/assets/img/company/${data.logo}`" alt="">
             </div>
         </div>
         <div class="item-info">
@@ -27,7 +27,7 @@
                         {{Math.floor(data.duration/(3600*100))}}ч
                         {{Math.floor(data.duration/(60*100)) - Math.floor(data.duration/(3600*100))*60}}м</div>
                 </div>
-                <div class="column column-33">
+                <div class="column column-33 centred-column">
                     <div class="item-info__name" v-if="data.stops.length === 0">Без пересадок</div>
                     <div class="item-info__name" v-if="data.stops.length > 0">{{data.stops.length}} {{stopsWord(data.stops.length)}}</div>
                     <div class="item-info__data" v-if="data.stops.length > 0">{{data.stops.join(', ')}}</div>
@@ -39,12 +39,16 @@
 
 <script setup>
 import {defineProps} from 'vue';
+import {useTicketsStore} from '@/stores/tickets';
+
 defineProps({
     data: {
         type: Object,
         required: true
     }
 })
+
+const tickets = useTicketsStore().getTickets();
 
 const stopsWord = (count) => {
     if(count === 1 || (count !== 11 && count%10 === 1)){
@@ -64,5 +68,9 @@ const stopsWord = (count) => {
 </script>
 
 <style scoped>
-
+.row .centred-column{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
 </style>
