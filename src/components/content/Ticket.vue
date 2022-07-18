@@ -9,7 +9,7 @@
                 minimumFractionDigits: 0,
                 }) }}</div>
             <div class="item-main__logo">
-                <img :src="`./src/assets/img/company/${data.logo}`" alt="">
+                <img :src="data.logo" alt="">
             </div>
         </div>
         <div class="item-info">

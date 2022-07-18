@@ -18,7 +18,7 @@ const tickets = computed(() =>
         let res = el.info;
         res.price = el.price;
         res.company = store.companies.find((company) => el.companyId === company.id);
-        res.logo = res.company?.name + '.svg';
+        res.logo = new URL('/src/assets/img/company/' + res.company?.name + '.svg', import.meta.url).href;
         return res;
     })
 )
