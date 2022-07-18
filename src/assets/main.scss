@@ -1,0 +1,127 @@
+@use "colors";
+@import "milligram/dist/milligram.css";
+@import '@vuepic/vue-datepicker/dist/main.css';
+
+body
+{
+  background-color: colors.$color-background;
+  font-family: sans-serif;
+}
+
+header {
+  display: flex;
+  justify-content: center;
+}
+
+label{
+  margin-bottom: 0;
+}
+
+@mixin container() {
+  background: #FFFFFF;
+  box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.1);
+  border-radius: 5px;
+  margin-bottom: 20px;
+}
+
+@mixin subname() {
+  //font-family: 'Open Sans';
+  font-style: normal;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  color: colors.$color-basic;
+  text-transform: uppercase;
+  font-size: 12px;
+}
+
+.filter{
+  &-count{
+    @include container();
+    padding-bottom: 20px;
+    &__name{
+      @include subname();
+      padding: 20px;
+    }
+  }
+  &-company{
+    @include container();
+    padding-bottom: 20px;
+    &__name{
+      @include subname();
+      padding: 20px;
+    }
+  }
+  &__controls{
+    padding: 10px 20px;
+    font-size: 12px;
+    font-weight: 400;
+    &:hover{
+      background: colors.$color-hover;
+      cursor: pointer;
+    }
+  }
+}
+
+.sort {
+  text-align: center;
+  display: flex;
+  overflow: hidden;
+  @include subname();
+  @include container();
+  .column{
+    padding: 20px;
+    margin-bottom: 0;
+    cursor: pointer;
+    &.active{
+      background: colors.$color-primary;
+      color: white;
+      &:hover{
+        background: colors.$color-primary;
+        color: white;
+      }
+    }
+    &:hover{
+      background: colors.$color-hover;
+    }
+  }
+}
+
+.item{
+  &:hover{
+    background: colors.$color-hover;
+  }
+  @include container();
+  padding: 20px;
+  font-weight: 600;
+  &-main {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 20px;
+    &__price {
+      font-size: 24px;
+      color: colors.$color-primary;
+    }
+  }
+  &-info{
+    &__name{
+      font-size: 12px;
+      color: colors.$color-secondary;
+      text-transform: uppercase;
+    }
+  }
+}
+
+.top-filter{
+  input{
+    @include container();
+  }
+}
+
+.btn{
+  background: colors.$color-primary;
+  color: white;
+  cursor: pointer;
+  border-radius: 5px;
+  text-align: center;
+  padding: 20px;
+}
