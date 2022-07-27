@@ -6,6 +6,7 @@
         :name="name"
         :id="'radio' + name + item.value"
         value="item.value"
+        @change="emit('change', item)"
       />
       <span class="radio"></span>
       {{ item.label }}
@@ -25,6 +26,7 @@ defineProps({
     required: true,
   },
 });
+const emit = defineEmits(['change'])
 </script>
 
 <style scoped lang="scss">

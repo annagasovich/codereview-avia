@@ -9,12 +9,13 @@ export const useTicketsStore = defineStore({
   }),
   getters: {
     tickets: (state) => {
-      return state.ticketsRaw.slice(0, 5).map((el) => {
+      return state.ticketsRaw.map((el) => {
         let res = el.info;
         res.price = el.price;
         res.company = state.companies.find(
           (company) => el.companyId === company.id
         );
+        res.company_id = res.company.id;
         res.logo = new URL(
           "@/assets/img/company/" + res.company?.name + ".svg",
           import.meta.url
@@ -22,6 +23,24 @@ export const useTicketsStore = defineStore({
         return res;
       });
     },
+    citiesTo: (state) => {
+      let cities = [];
+      state.ticketsRaw.map((el) => {
+        if(!cities.includes(el.info.destination)){
+          cities.push(el.info.destination);
+        }
+      })
+      return cities;
+    },
+    citiesFrom: (state) => {
+      let cities = [];
+      state.ticketsRaw.map((el) => {
+        if(!cities.includes(el.info.origin)){
+          cities.push(el.info.origin);
+        }
+      })
+      return cities;
+    }
   },
   actions: {
     async getCompanies() {

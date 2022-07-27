@@ -112,7 +112,7 @@ label{
 }
 
 .top-filter{
-  input{
+  input, .custom-select{
     @include container();
   }
 }

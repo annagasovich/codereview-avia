@@ -11,9 +11,13 @@ export const useFilterStore = defineStore({
     orderBy(sort) {
       this.sort = sort;
     },
-    async where(condition) {
-      let data = await http().get("/163b5e66df9f2741243e");
-      this.tickets = data.data.slice(0, 5);
+    where(condition) {
+      let updateCondition = this.conditions.find((el) => el.name === condition.name);
+      if(!updateCondition) {
+        this.conditions.push(condition);
+      } else {
+        updateCondition.value = condition.value;
+      }
     },
   },
 });

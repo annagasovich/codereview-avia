@@ -1,27 +1,41 @@
 <template>
   <div class="top-filter">
-    <input
-      type="text"
-      name="from"
-      placeholder="Откуда"
-      class="top-filter__input"
-    />
+    <VSelect
+      :items="store.citiesFrom"
+      :placeholder="'Откуда'"
+      :className="'top-filter__input'"
+      @input="setFilter('origin', $event)"
+    ></VSelect>
     <span class="swap">
       <img src="@/assets/img/swap.svg" alt="" />
     </span>
-    <input
-      type="text"
-      name="from"
-      placeholder="Куда"
-      class="top-filter__input top-filter__input__extra_margin"
-    />
-    <Datepicker v-model="date" placeholder="Когда"></Datepicker>
-    <Datepicker v-model="date" placeholder="Обратно"></Datepicker>
+    <VSelect
+      :items="store.citiesFrom"
+      :placeholder="'Куда'"
+      :className="'top-filter__input top-filter__input__extra_margin'"
+      @input="setFilter('destination', $event)"
+    ></VSelect>
+    <Datepicker v-model="dateStart" placeholder="Когда" :format="'yyyy/MM/dd'" @update:modelValue="setFilter('dateStart', $event.getTime())"></Datepicker>
+    <Datepicker v-model="dateEnd" placeholder="Обратно" @update:modelValue="setFilter('dateEnd', $event.getTime())"></Datepicker>
   </div>
 </template>
 
 <script setup>
 import Datepicker from "@vuepic/vue-datepicker";
+import { useTicketsStore } from "@/stores/tickets";
+import { useFilterStore } from "@/stores/filter";
+import VSelect from "@/components/controls/VSelect.vue";
+import {ref} from "vue";
+const store = useTicketsStore();
+const filter = useFilterStore();
+
+const dateStart = ref(null);
+const dateEnd = ref(null);
+
+const setFilter = (param, ev) => {
+  console.log(ev);
+  filter.where({ name: param, value: ev });
+};
 </script>
 
 <style lang="scss">
@@ -30,6 +44,7 @@ import Datepicker from "@vuepic/vue-datepicker";
   width: 100%;
   gap: 2px;
   input[type="text"],
+  .custom-select,
   .dp__main {
     position: relative;
     padding: 20px 13px;

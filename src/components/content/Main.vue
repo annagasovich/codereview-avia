@@ -1,7 +1,7 @@
 <template>
   <Sort @onsort="sort" />
   <div class="list">
-    <Ticket v-for="item in sorted(store.tickets)" :data="item" />
+    <Ticket v-for="item in sorted(filtered(store.tickets)).slice(0, 5)" :data="item" />
   </div>
   <div class="btn">Показать еще 5 билетов</div>
 </template>
@@ -30,6 +30,17 @@ const sorted = (data) => {
   }
   return data;
   //return data.sort(filterStore.sort);
+};
+
+const filtered = (data) => {
+  let filtered = data;
+  filterStore.conditions.forEach((item) => {
+    filtered = filtered.filter(
+      (dataItem) => dataItem[item.name] === item.value
+    );
+    console.log(item.name, filtered.length);
+  });
+  return filtered;
 };
 </script>
 
