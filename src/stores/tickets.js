@@ -16,10 +16,7 @@ export const useTicketsStore = defineStore({
           (company) => el.companyId === company.id
         );
         res.company_id = res.company.id;
-        res.logo = new URL(
-          "@/assets/img/company/" + res.company?.name + ".svg",
-          import.meta.url
-        ).href;
+        res.logo = "@/assets/img/company/" + res.company?.name + ".svg";
         return res;
       });
     },
