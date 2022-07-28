@@ -3,10 +3,10 @@
     <div class="filter-count">
       <div class="filter-count__name">Количество пересадок</div>
       <div class="filter-count__controls">
-        <Checkbox :label="'Без пересадок'" :name="'stops0'" />
-        <Checkbox :label="'1 пересадка'" :name="'stops1'" />
-        <Checkbox :label="'2 пересадки'" :name="'stops2'" />
-        <Checkbox :label="'3 пересадки'" :name="'stops3'" />
+        <Checkbox :label="'Без пересадок'" :name="'stops0'" @change="setFilter('stops_count', $event)"/>
+        <Checkbox :label="'1 пересадка'" :name="'stops1'" @change="setFilter('stops_count', $event)"/>
+        <Checkbox :label="'2 пересадки'" :name="'stops2'" @change="setFilter('stops_count', $event)"/>
+        <Checkbox :label="'3 пересадки'" :name="'stops3'" @change="setFilter('stops_count', $event)"/>
       </div>
     </div>
     <div class="filter-company">

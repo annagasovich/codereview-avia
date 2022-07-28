@@ -2,7 +2,7 @@
   <div class="filter-company__controls filter__controls">
     <label class="checkbox-container"
       >{{ label }}
-      <input type="checkbox" :name="name" :checked="value" />
+      <input type="checkbox" :name="name" :checked="value" @change="emit('change', name)"/>
       <span class="checkmark"></span>
     </label>
   </div>
@@ -24,6 +24,7 @@ defineProps({
     default: false,
   },
 });
+const emit = defineEmits(['change']);
 </script>
 
 <style scoped lang="scss">
