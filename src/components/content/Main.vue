@@ -1,41 +1,29 @@
 <template>
-    <Sort/>
-    <div class="list">
-        <Ticket v-for="item in tickets" :data="item"/>
-    </div>
-    <div class="btn">Показать еще 5 билетов</div>
+  <Sort @onsort="sort" />
+  <div class="list">
+    <Ticket v-for="item in paginate(sort(filter(store.tickets, filterStore.conditions), filterStore.sort?.sort), page)" :data="item" />
+    <div v-if="!paginate(sort(filter(store.tickets, filterStore.conditions), filterStore.sort?.sort), page).length" class="no-tickets">Билетов нет</div>
+  </div>
+  <div class="btn" @click="page++">Показать еще 5 билетов</div>
 </template>
 
 <script setup>
-import {computed} from 'vue';
-import Sort from "@/components/filter/Sort.vue"
-import Ticket from "@/components/content/Ticket.vue"
-import {useTicketsStore} from '@/stores/tickets';
+import {computed, reactive, ref} from "vue";
+import Sort from "@/components/filter/Sort.vue";
+import Ticket from "@/components/content/Ticket.vue";
+import ticketFilter from "@/filters/ticketFilter";
+import { useTicketsStore } from "@/stores/tickets";
+import { useFilterStore } from "@/stores/filter";
 
 const store = useTicketsStore();
-const tickets = computed(() =>
-    store.tickets.map((el) => {
-        let res = el.info;
-        res.price = el.price;
-        res.company = store.companies.find((company) => el.companyId === company.id);
-        res.logo = new URL('/src/assets/img/company/' + res.company?.name + '.svg', import.meta.url).href;
-        return res;
-    })
-)
+const filterStore = useFilterStore();
+
 store.getTickets();
 
-const data = {
-    "stops": ["EKT", "EKT"],
-    "origin": "HKG",
-    "dateEnd": 1664574603624,
-    "duration": 8880000,
-    "dateStart": 1663451403624,
-    "destination": "ARH",
-    "price": 57400,
-    "logo": "S7 Airlines.svg"
-}
+const { filter, sort, paginate } = ticketFilter();
+
+const page = ref(1);
+
 </script>
 
-<style scoped>
-
-</style>
+<style scoped></style>

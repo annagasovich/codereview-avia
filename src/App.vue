@@ -1,29 +1,26 @@
 <template>
   <div class="container">
     <header>
-      <img src="@/assets/img/logo.svg" alt="">
+      <img src="@/assets/img/logo.svg" alt="" />
     </header>
-    <TopFilter/>
+    <TopFilter />
     <main>
       <div class="row">
         <div class="column column-33">
-          <Filter/>
+          <Filter />
         </div>
         <div class="column column-67">
-          <Main/>
+          <Main />
         </div>
       </div>
     </main>
   </div>
-
 </template>
 
 <script setup>
-import Filter from "@/components/filter/Filter.vue"
-import TopFilter from "@/components/filter/TopFilter.vue"
-import Main from "@/components/content/Main.vue"
+import Filter from "@/components/filter/Filter.vue";
+import TopFilter from "@/components/filter/TopFilter.vue";
+import Main from "@/components/content/Main.vue";
 </script>
 
-<style scoped>
-
-</style>
+<style scoped></style>

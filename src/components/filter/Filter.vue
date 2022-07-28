@@ -1,52 +1,42 @@
 <template>
-    <div class="filter">
-        <div class="filter-count">
-            <div class="filter-count__name">Количество пересадок</div>
-            <div class="filter-count__controls">
-                <Checkbox
-                        :label="'Без пересадок'"
-                        :name="'stops0'"
-                />
-                <Checkbox
-                        :label="'1 пересадка'"
-                        :name="'stops1'"
-                />
-                <Checkbox
-                        :label="'2 пересадки'"
-                        :name="'stops2'"
-                />
-                <Checkbox
-                        :label="'3 пересадки'"
-                        :name="'stops3'"
-                />
-            </div>
-        </div>
-        <div class="filter-company">
-            <div class="filter-company__name">Компания</div>
-            <Radiogroup
-                    :data="companies"
-                    :name="'company'"
-            />
-        </div>
+  <div class="filter">
+    <div class="filter-count">
+      <div class="filter-count__name">Количество пересадок</div>
+      <div class="filter-count__controls">
+        <Checkbox :label="'Без пересадок'" :name="'stops0'" @change="setFilter('stops_count', $event)"/>
+        <Checkbox :label="'1 пересадка'" :name="'stops1'" @change="setFilter('stops_count', $event)"/>
+        <Checkbox :label="'2 пересадки'" :name="'stops2'" @change="setFilter('stops_count', $event)"/>
+        <Checkbox :label="'3 пересадки'" :name="'stops3'" @change="setFilter('stops_count', $event)"/>
+      </div>
     </div>
+    <div class="filter-company">
+      <div class="filter-company__name">Компания</div>
+      <Radiogroup :data="companies" :name="'company'" @change="setFilter('company_id', $event.value)"/>
+    </div>
+  </div>
 </template>
 
 <script setup>
-import {computed} from 'vue';
-import Checkbox from "@/components/controls/Checkbox.vue"
-import Radiogroup from "@/components/controls/Radiogroup.vue"
-import {useTicketsStore} from '@/stores/tickets';
+import { computed } from "vue";
+import Checkbox from "@/components/controls/Checkbox.vue";
+import Radiogroup from "@/components/controls/Radiogroup.vue";
+import { useTicketsStore } from "@/stores/tickets";
+import { useFilterStore } from "@/stores/filter";
 
 const store = useTicketsStore();
-const companies = computed(() =>
-    [{name: 'Все', id: 1}]
-        .concat(store.companies)
-        .map((el) => {return {label: el.name, value: el.id}})
-)
-store.getCompanies();
+const filter = useFilterStore();
 
+const companies = computed(() =>
+  [{ name: "Все", id: 1 }].concat(store.companies).map((el) => {
+    return { label: el.name, value: el.id };
+  })
+);
+
+const setFilter = (param, ev) => {
+  console.log(ev);
+  filter.where({ name: param, value: ev });
+};
+store.getCompanies();
 </script>
 
-<style scoped>
-
-</style>
+<style scoped></style>
